@@ -177,7 +177,14 @@ function renderCart() {
             <tr>
                 <td>${limitText(item.name, 40)}</td>
                 <td><img src="${item.img}" class="cart-img" alt="${item.name}" style="width:48px;height:48px;object-fit:cover;"></td>
-                <td>${item.qty}</td>
+                <td>
+                    <button class="btn btn-sm btn-outline-secondary" onclick="changeCartQty(${item.id}, -1)">-</button>
+                    <span class="mx-2">${item.qty}</span>
+                    <button class="btn btn-sm btn-outline-secondary" onclick="changeCartQty(${item.id}, 1)">+</button>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-danger" onclick="removeFromCart(${item.id})">Delete</button>
+                </td>
             </tr>
         `;
     });
@@ -190,6 +197,7 @@ function renderCart() {
                         <th>Product</th>
                         <th>Image</th>
                         <th>Quantity</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -201,6 +209,23 @@ function renderCart() {
             <a href="checkout.html" class="btn btn-outline-primary btn-sm flex-fill">Checkout</a>
         </div>
     `;
+}
+
+function changeCartQty(productId, delta) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || {};
+    if (!cart[productId]) return;
+    cart[productId].qty += delta;
+    if (cart[productId].qty < 1) cart[productId].qty = 1; // Không cho nhỏ hơn 1
+    localStorage.setItem('cart', JSON.stringify(cart));
+    renderCart();
+}
+
+function removeFromCart(productId) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || {};
+    if (!cart[productId]) return;
+    delete cart[productId];
+    localStorage.setItem('cart', JSON.stringify(cart));
+    renderCart();
 }
 
 // ==================== KHỞI TẠO ====================
