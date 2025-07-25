@@ -11156,3 +11156,14 @@ p {
     flex-direction: column;
     align-items: center;
 }
+
+.intro-text ul,
+.intro-text ol {
+    text-align: center;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.intro-text {
+    text-align: center;
+}

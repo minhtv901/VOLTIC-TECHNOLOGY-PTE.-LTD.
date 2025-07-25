@@ -34,7 +34,6 @@ function renderProducts(page) {
                     <p class="card-text flex-grow-1">${limitText(product.desc, 90)}</p>
                     <div class="card-buttons mt-auto">
                         <a href="product_detail.html?id=${product.id}" class="btn btn-outline-primary btn-sm flex-fill">View Details</a>
-                        <button class="btn btn-outline-primary btn-sm flex-fill" onclick="addToCart(${product.id})">Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -129,7 +128,6 @@ function renderProductDetail() {
         </div>
         <h2 class="mt-3 mb-2">${limitText(product.name, 60)}</h2>
         <p class="mb-4">${limitText(product.desc, 250)}</p>
-        <button class="btn btn-outline-primary btn-sm flex-fill" onclick="addToCart(${product.id})">Add to Cart</button>
     `;
 
     // Bắt sự kiện đổi ảnh chính khi click vào ảnh phụ
